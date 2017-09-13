@@ -4,6 +4,11 @@ const sass = require("gulp-sass");
 const uglify = require("gulp-uglify");
 const ghPages = require("gulp-gh-pages");
 
+const options   = {
+    remoteUrl:"https://github.com/Annakluz/ludak.github.io.git",
+    branch: "master"};
+
+
 const paths = {
     js: "./src/assets/js/*.js",
     scss: "./src/assets/scss/*.scss",
@@ -55,3 +60,12 @@ gulp.task("sass-w", ["prepareCss"], ()=>{
 gulp.task("html-w", ["prepareHtml"], ()=>{
     browserSync.reload();
 })
+
+
+
+// task deploy *****GH-PAGES****//
+
+gulp.task("deploy", ()=>{
+    gulp.src("dist/**/*")
+    .pipe(ghPages());
+});
